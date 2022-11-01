@@ -1,0 +1,17 @@
+.button {
+    margin-left: 5px;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: orange;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(252, 182, 52);
+}
+
+input {
+    border-radius: 1em;
+    padding: 4px;
+}

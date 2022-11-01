@@ -1,0 +1,12 @@
+.addButton {
+    margin-left: 5px;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: rgba(102, 255, 0, 0.603);
+    cursor: pointer;
+  }
+
+.addButton:hover {
+    background-color: rgba(151, 255, 81, 0.692);
+}
