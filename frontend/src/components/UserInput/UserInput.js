@@ -1,14 +1,13 @@
 import React from "react";
 import classes from './UserInput.module.css'
 
-const UserInput = ({ recipeList }) => {
+const UserInput = ({ recipe, onRemove }) => {
 
     return (
-        <li>
-            <div>
-                <input/>
-                <button className={classes.button}>+</button>
-            </div>
+        <li className={classes.ingredient} onClick={onRemove}>
+            <span className={classes.food_image}>&nbsp;</span>
+            <span>{recipe.value}</span>
+            <button className={classes.button} onClick={onRemove}><strong>X</strong></button>
         </li>
     )
 }

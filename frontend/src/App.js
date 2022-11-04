@@ -9,8 +9,10 @@ function App() {
         <h1>Dylan's <span className="recipe">Recipe</span> App</h1>
       </header>
       <div className="container">
-        <h3>Whatcha working with today?</h3>
-        <UserInputForm/>
+        <div className="form-content">
+          <h3>Whatcha working with today?</h3>
+          <UserInputForm/>
+        </div>
       </div>
 
     </div>

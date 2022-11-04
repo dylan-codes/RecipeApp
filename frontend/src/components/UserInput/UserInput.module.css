@@ -1,17 +1,62 @@
 .button {
-    margin-left: 5px;
-    border-radius: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: orange;
-    cursor: pointer;
+  margin-left: 5px;
+  border-radius: 1em;
+  border: 0em;
+  padding:  2.5px 5px;
+  /* background-color: rgb(255, 255, 255); */
+  cursor: pointer;
+  color: grey;
 }
 
 .button:hover {
-    background-color: rgb(252, 182, 52);
+  background-color: rgb(252, 182, 52);
 }
 
 input {
-    border-radius: 1em;
-    padding: 4px;
+  border-radius: 1em;
+  padding: 4px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 20px;
+}
+
+.ingredient {
+  background-color: rgb(224, 224, 224);
+  padding: 8px 28px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0.1em;
+  animation: pop-in 0.6s;
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.ingredient:hover {
+  background-color: rgb(219, 219, 219);
+  cursor: pointer;
+  /* animation: animate 0.6s; */
+  transform: scale(0.98);
+}
+
+@keyframes animate {
+  25% {
+    transform: scale(0.98, 0.98);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  75% {
+    transform: scale(0.98, 0.98);
+  }
 }

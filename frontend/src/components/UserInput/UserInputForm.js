@@ -1,26 +1,83 @@
-import React, {useState} from "react";
-import UserInput from './UserInput'
-import classes from "./UserInputForm.module.css"
+import React, { useState } from "react";
+import UserInput from "./UserInput";
+import classes from "./UserInputForm.module.css";
 
 const UserInputForm = () => {
-    const [recipeList, setRecipeList] = useState(["Chicken", "Lasagna Noodles", "Pasta Sauce"]);
-    const inputMap = recipeList.map(recipe => {
-        console.log(recipe)
-        return(
-            <>
-                <UserInput recipe={recipe}/>
-            </>
-        )
-    })
+  const [userInput, setUserInput] = useState("");
+  const [recipeList, setRecipeList] = useState([
+    {
+      id: Math.random(),
+      value: "Chicken",
+    },
+    {
+      id: Math.random(),
+      value: "Pickles",
+    },
+    {
+      id: Math.random(),
+      value: "Chicken",
+    },
+    {
+      id: Math.random(),
+      value: "Chicken",
+    },
+    {
+      id: Math.random(),
+      value: "Chicken",
+    },
+  ]);
 
+  const addIngredientHandler = (event) => {
+    console.log("hello")
+    event.preventDefault();
+
+    setRecipeList([
+      ...recipeList,
+      {
+        id: Math.random(),
+        value: userInput,
+      },
+    ]);
+
+    setUserInput("");
+  };
+
+  const removeIngredientHandler = (id) => (event) => {
+    const newArray = recipeList.filter((recipe) => recipe.id !== id);
+
+    return setRecipeList(newArray);
+  };
+
+  const ingredientInputHandler = (event) => {
+    setUserInput(event.target.value);
+  };
+
+  const recipeMap = recipeList.map((recipe) => {
     return (
-        <>
-            <ul>
-                {inputMap}
-            </ul>
-            <button className={classes.addButton}>+</button>
-        </>
-    )
-}
+      <UserInput
+        key={recipe.id}
+        onRemove={removeIngredientHandler(recipe.id)}
+        recipe={recipe}
+      />
+    );
+  });
+
+  return (
+      <div className={classes["form_content"]}>
+        <form onSubmit={addIngredientHandler}>
+          <input value={userInput} onChange={ingredientInputHandler}></input>
+          <button
+            type="submit"
+            className={classes.addButton}
+          >
+            +
+          </button>
+        </form>
+        <ul className={classes.ingredientList}>{recipeMap}</ul>
+
+        <button className={classes.btn}>Submit Order</button>
+      </div>
+  );
+};
 
 export default UserInputForm;
