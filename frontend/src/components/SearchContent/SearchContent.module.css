@@ -1,0 +1,50 @@
+.search_header {
+  
+}
+
+.search_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column1 {
+  padding-right: 5em;
+}
+
+.imageContent {
+  text-align: left;
+  width: 200px;
+  height: 200px;
+}
+
+.description {
+    padding-top: 1em;
+    text-align: left;
+    max-width: 300px;
+}
+
+.column2 {
+
+}
+
+.ingredient_list {
+  text-align: left;
+  list-style: circle;
+}
+
+.ingredients_container {
+  text-align: left;
+}
+
+.recipe {
+  text-align: left;
+}
+
+.text_has {
+  color: green;
+}
+
+.text_hasNot {
+  color: orange;
+}
+

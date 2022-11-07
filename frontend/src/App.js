@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import UserInputForm from './components/UserInput/UserInputForm';
+import SearchContentContainer from './components/SearchContent/SearchContentContainer';
+
 
 function App() {
   return (
@@ -14,6 +15,12 @@ function App() {
           <UserInputForm/>
         </div>
       </div>
+
+      <div>
+        <SearchContentContainer/>
+      </div>
+      
+      
 
     </div>
   );
