@@ -4,7 +4,7 @@ import placeholderImg from "../../images/placeholder.jpg"
 import SearchContent from "./SearchContent";
 
 
-const SearchContentContainer = () => {
+const SearchContentContainer = ({ searchResults }) => {
 
     // DUMMY DATA
     const ingredientList = [
@@ -25,15 +25,15 @@ const SearchContentContainer = () => {
         { text: "Cook on 425 degrees for 1 hour.", order: 5 }
     ]
 
+    const searchContent = searchResults.map(result => {
+        return (
+            <SearchContent recipeTitle={result.name} ingredientList={result.recipe} recipeList={result.steps} image={""} description={""}/>
+        )
+    })
 
     return (
         <div className={classes["search_container"]}>
-            <SearchContent recipeTitle={"Chicken"} ingredientList={ingredientList} recipeList={recipeList} image={""} description={""}/>
-            <SearchContent recipeTitle={"Chicken"} ingredientList={ingredientList} recipeList={recipeList} image={""} description={""}/>
-            <SearchContent recipeTitle={"Chicken"} ingredientList={ingredientList} recipeList={recipeList} image={""} description={""}/>
-            <SearchContent recipeTitle={"Chicken"} ingredientList={ingredientList} recipeList={recipeList} image={""} description={""}/>
-            <SearchContent recipeTitle={"Chicken"} ingredientList={ingredientList} recipeList={recipeList} image={""} description={""}/>
-
+            {searchContent}
         </div>
     )
 

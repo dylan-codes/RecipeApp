@@ -28,7 +28,7 @@ const UserInputForm = () => {
   ]);
 
   const addIngredientHandler = (event) => {
-    console.log("hello")
+    console.log("hello");
     event.preventDefault();
 
     setRecipeList([
@@ -52,6 +52,17 @@ const UserInputForm = () => {
     setUserInput(event.target.value);
   };
 
+  const submitIngredients = (event) => {
+    fetch("/api/recipe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({payload: recipeList}),
+    }).then(res => res.json()).then(data => {
+      let payload = data.payload;
+      console.log(payload)
+    });
+  };
+
   const recipeMap = recipeList.map((recipe) => {
     return (
       <UserInput
@@ -63,20 +74,19 @@ const UserInputForm = () => {
   });
 
   return (
-      <div className={classes["form_content"]}>
-        <form onSubmit={addIngredientHandler}>
-          <input value={userInput} onChange={ingredientInputHandler}></input>
-          <button
-            type="submit"
-            className={classes.addButton}
-          >
-            +
-          </button>
-        </form>
-        <ul className={classes.ingredientList}>{recipeMap}</ul>
+    <div className={classes["form_content"]}>
+      <form onSubmit={addIngredientHandler}>
+        <input value={userInput} onChange={ingredientInputHandler}></input>
+        <button type="submit" className={classes.addButton}>
+          +
+        </button>
+      </form>
+      <ul className={classes.ingredientList}>{recipeMap}</ul>
 
-        <button className={classes.btn}>Submit Order</button>
-      </div>
+      <button className={classes.btn} onClick={submitIngredients}>
+        Submit Order
+      </button>
+    </div>
   );
 };
 

@@ -9,20 +9,19 @@ const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, descrip
       <li>
         <p
           className={
-            ingredient.available ? classes["text_has"] : classes["text_hasNot"]
+            /* ingredient.available */ true ? classes["text_has"] : classes["text_hasNot"]
           }
         >
-          {ingredient.title}
+          {Object.keys(ingredient)}
         </p>
       </li>
     );
   });
 
   const recipe = recipeList.map((step) => {
-    console.log(step)
     return (
       <li>
-          {step.text}
+          {step}
       </li>
     );
   });
