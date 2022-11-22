@@ -7,14 +7,4 @@
   border-radius: 1em;
   backdrop-filter: blur(5px);
   /* background-color: rgba(255, 255, 255); */
-  animation: pop-in 1s;
-}
-
-@keyframes pop-in {
-  0% {
-    transform: scale(0, 0);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
 }

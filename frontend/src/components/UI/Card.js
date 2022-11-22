@@ -3,7 +3,9 @@ import classes from "./Card.module.css"
 const Card = (props) => {
     return (
         <div className={classes.card}>
-            {props.children}
+            <div className={classes["search_container"]}>
+                {props.children} 
+            </div>
         </div>
     )
 }

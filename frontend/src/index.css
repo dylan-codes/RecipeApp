@@ -32,7 +32,7 @@ h3 {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px 20px;
   text-align: center;
   border-radius: 1em;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
@@ -47,6 +47,8 @@ h3 {
   padding: 20px 0;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .recipe {
@@ -70,6 +72,7 @@ h3 {
 
 .header ul li a:hover {
   color: #777;
+  cursor: pointer;
 }
 
 .header ul li a svg {
@@ -125,8 +128,7 @@ h3 {
   width: 100%;
   padding: 10px;
   border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: 50px;
   font-family: inherit;
 }
 
@@ -192,6 +194,10 @@ h3 {
   animation: spin 1.2s linear infinite;
 }
 
+.searchContent {
+
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -213,4 +219,26 @@ h3 {
   .heading p {
     font-size: 1.5rem;
   }
+}
+/* 
+@media (max-width: 414px) {
+  .container {
+    width: 100%;
+  }
+  * {
+    max-width: 414px;
+  }
+} */
+
+::-webkit-scrollbar {
+ /* background-color: rgba(255, 208, 0, 0.315); */
+  background-color: rgba(255, 208, 0, 0);
+  width: px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: rgb(255, 208, 0);
+  outline: 1px solid rgb(167, 136, 0);
+
 }

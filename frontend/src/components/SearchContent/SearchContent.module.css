@@ -1,5 +1,11 @@
 .search_header {
-  
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.favorite_star {
+  cursor: pointer;
 }
 
 .search_info {

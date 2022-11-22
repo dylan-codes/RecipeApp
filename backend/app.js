@@ -11,7 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 /* app.use("/api/goals", require("./routes/goalRoutes")); */
-app.use("/api/recipe", require("./routes/searchRoutes"));
+/* app.use("/api/search", require("./routes/searchRoutes")); */
+app.use("/api/recipes", require("./routes/recipeRoutes")); 
+app.use("/api/ingredients", require("./routes/ingredientRoutes"))
+app.use("/api/users", require("./routes/userRoutes"))
+
 
 app.use(errorHandler)
 

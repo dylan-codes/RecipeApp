@@ -1,18 +1,28 @@
+import { useContext } from "react";
 import Card from "../UI/Card";
 import classes from "./SearchContent.module.css";
-import placeholderImg from "../../images/placeholder.jpg";
-
-const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, description }) => {
+import placeholderImg from "../../images/icons/SVG/placeholder.jpg";
+import InventoryContext from "../../context/inventory-context";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, description, availableIngredients }) => {
+  const inventoryCtx = useContext(InventoryContext);
 
   const ingredients = ingredientList.map((ingredient) => {
+
+    const userHasIngredient = inventoryCtx.items.some(item => {
+      return item.toLowerCase() === ingredient.name.toLowerCase();
+    });
+
+    let ingredientDisplayText = (ingredient.name + ' (' + ingredient.amount + ') ')
     return (
       <li>
         <p
-          className={
-            /* ingredient.available */ true ? classes["text_has"] : classes["text_hasNot"]
+          className={ // availableIngredients should look something like ["chicken", "bread", etc.]
+            userHasIngredient === true ? classes["text_has"] : classes["text_hasNot"]
           }
         >
-          {Object.keys(ingredient)}
+          {ingredientDisplayText}
         </p>
       </li>
     );
@@ -28,11 +38,14 @@ const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, descrip
 
   return (
     <Card>
-      <h3 className={classes["search_header"]}>{recipeTitle}</h3>
+      <div className={classes["search_header"]}>
+        <h3>{recipeTitle}</h3>
+        <a className={classes["favorite_star"]}><FontAwesomeIcon icon={faStar} /></a>
+      </div>
       <div className={classes["search_info"]}>
         <div className={classes.column1}>
             <div className={classes.imageContent}>
-            <img className={classes.imageContent} src={placeholderImg}></img>
+            <img className={classes.imageContent} src={placeholderImg} alt={"Food"}></img>
             </div>
             <div className={classes.description}>
                 <h4>Description:</h4>

@@ -4,5 +4,16 @@
     border-radius: 10px;
     padding: 10px;
     margin-top: 20px;
+    animation: pop-in 1s;
   }
+  
+  @keyframes pop-in {
+    0% {
+      transform: scale(0, 0);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+  }
+  
   
