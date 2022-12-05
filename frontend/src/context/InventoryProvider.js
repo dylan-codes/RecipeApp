@@ -8,20 +8,27 @@ const defaultInventoryState = {
 
 const inventoryReducer = (state, action) => {
   if (action.type === "ADD") {
-    let updatedInventory = [...state.items]
-    updatedInventory.push(action.item)
+    let updatedInventory = [...state.items];
+    updatedInventory.push(action.item);
     return {
-        items: updatedInventory
+      items: updatedInventory,
     };
   }
   if (action.type === "REMOVE") {
-    let inventory = [...state.items]
-    console.log(action.item)
-    let updatedInventory = inventory.filter(ingredient => ingredient !== action.item)
-    console.log(updatedInventory)
+    let inventory = [...state.items];
+    console.log(action.item);
+    let updatedInventory = inventory.filter(
+      (ingredient) => ingredient !== action.item
+    );
+    console.log(updatedInventory);
     return {
-      items: updatedInventory
-    }
+      items: updatedInventory,
+    };
+  }
+  if (action.type === "CLEAR") {
+    return {
+      items: [],
+    };
   }
   return defaultInventoryState;
 };
@@ -34,17 +41,21 @@ const InventoryProvider = (props) => {
 
   const addItemToInventory = (item) => {
     dispatchInventoryAction({ type: "ADD", item: item });
-
   };
 
   const removeItemFromCartHandler = (item) => {
     dispatchInventoryAction({ type: "REMOVE", item: item });
   };
 
+  const clearItemsFromCartHandler = () => {
+    dispatchInventoryAction({ type: "CLEAR" })
+  }
+
   const inventoryContext = {
     items: inventoryState.items,
     addItem: addItemToInventory,
     removeItem: removeItemFromCartHandler,
+    clear: clearItemsFromCartHandler
   };
 
   return (
