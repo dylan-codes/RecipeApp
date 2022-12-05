@@ -5,8 +5,18 @@ const User = require("../models/userModel");
 // @desc    Get Full Search Result
 // @route   GET /api/recipes
 // @access  Private
+// @NOTE    For DEV purposes only. Not to be used in Prod. To use in dev, change out the route function in recipeRoutes.js
 const getRecipesAll = asyncHandler(async (req, res) => {
   const results = await Recipe.find();
+
+  res.status(200).json({ results });
+});
+
+// @desc    Get Logged In User's Stored Recipes
+// @route   GET /api/recipes
+// @access  Private
+const getUserRecipes = asyncHandler(async (req, res) => {
+  const results = await Recipe.find({"user": { $eq: req.user.id }});
 
   res.status(200).json({ results });
 });
@@ -26,7 +36,7 @@ const setRecipeCriteria = asyncHandler(async (req, res) => {
   let search = await Recipe.find({
     $and: [
       {"user": { $eq: req.user.id }},
-      {"ingredients.name": { $in: payload }}, // Search only this if user doesnt work
+      {"ingredients.name": { $in: payload }}, // NOTE: You can replace the search with just this line if user doesnt work
     ]
   }).exec();
 
@@ -118,7 +128,8 @@ const deleteRecipe = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  getRecipesAll,
+  getUserRecipes,
+  getRecipesAll, // Remove in prod. Only using for testing
   setRecipeCriteria,
   createRecipe,
   updateRecipe,

@@ -1,26 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/UI/Card";
+import { useLogin } from "../hooks/use-login";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const { login, error, isLoading } = useLogin();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const { name, email, password, password2 } = formData;
+  const { email, password } = formData;
 
   const onChange = (event) => {
     setFormData((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value
-    }))
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-  }
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    await login(email, password);
+
+    if (!error) {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <>
@@ -56,9 +67,10 @@ function Login() {
             />
           </div>
           <div className="form-group">
-            <button type="sumit" className="btn btn-block">
-                Submit
+            <button type="sumit" className="btn btn-block" disabled={isLoading}>
+              Submit
             </button>
+            {error && <div className="validation-error">{error}</div>}
           </div>
         </form>
       </section>

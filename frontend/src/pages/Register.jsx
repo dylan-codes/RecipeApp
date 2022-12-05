@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/UI/Card";
+import { useSignup } from "../hooks/use-signup";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -10,19 +11,33 @@ function Register() {
     password: "",
     password2: "",
   });
+  const {signup, error, isLoading} = useSignup()
 
   const { name, email, password, password2 } = formData;
 
   const onChange = (event) => {
     setFormData((prevState) => ({
-        ...prevState,
-        [event.target.name]: event.target.value
-    }))
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-  }
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    if (password !== password2) {
+      throw new Error("The entered passwords do not match");
+    }
+
+    await signup(name, email, password)
+
+/*     const response = await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json; */
+  };
 
   return (
     <>
@@ -80,9 +95,10 @@ function Register() {
             />
           </div>
           <div className="form-group">
-            <button type="sumit" className="btn btn-block">
-                Submit
+            <button type="sumit" className="btn btn-block" disabled={isLoading}>
+              Submit
             </button>
+            {error && <div>{error}</div>}
           </div>
         </form>
       </section>

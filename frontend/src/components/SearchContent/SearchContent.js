@@ -5,6 +5,7 @@ import placeholderImg from "../../images/icons/SVG/placeholder.jpg";
 import InventoryContext from "../../context/inventory-context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, description, availableIngredients }) => {
   const inventoryCtx = useContext(InventoryContext);
 

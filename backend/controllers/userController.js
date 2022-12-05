@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const validator = require('validator');
 
 // @desc Register new user
 // @route POST /api/users
@@ -13,6 +14,21 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please add all fields");
   }
+
+  if (validator.isEmpty(name.trim())){
+    res.status(400);
+    throw new Error("Please enter a name")
+  }
+  if (!validator.isEmail(email)) {
+    res.status(400);
+    throw new Error("Please enter a valid email")
+  }
+  if (!validator.isStrongPassword(password)){ // Strong password defaults: length = 8, minLowercase = 1, minUppercase = 1, minNumbers = 1, minSymbols = 1
+    res.status(400);
+    throw new Error("Password requirements: Use at least 8 characters. Must include one uppercase character, one number, and one symbol.")
+  }
+
+
 
   // Check if user exists
   const userExists = await User.findOne({ email });
@@ -36,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user.id,
-      name: user.name,
+      name: user.name.trim(),
       email: user.email,
       token: generateToken(user._id),
     });
@@ -44,16 +60,24 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Invalid user data");
   }
+
+  return(user)
 });
 
 // @desc Authenticate a user
 // @route POST /api/users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
+
   const { email, password } = req.body;
 
   // Check for user email
   const user = await User.findOne({ email });
+  
+  if (!user) {
+    res.status(400);
+    throw new Error("User email not found")
+  }
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({

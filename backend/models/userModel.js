@@ -18,4 +18,12 @@ const userSchema = mongoose.Schema({
 {
     timestamps: true
 })
+
+/* 
+// static signup method
+userSchema.statics.signup = async (name, email, password) => {
+    
+}
+ */
+
 module.exports = mongoose.model('User', userSchema)

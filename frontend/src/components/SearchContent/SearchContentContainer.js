@@ -3,7 +3,7 @@ import classes from "./SearchContentContainer.module.css"
 import SearchContent from "./SearchContent";
 import InventoryContext from "../../context/inventory-context";
 
-const SearchContentContainer = ({ searchResults}) => {
+const SearchContentContainer = ({ searchResults, cardType }) => {
     const inventoryCtx = useContext(InventoryContext)
 
     let sortSearchResults = searchResults.sort((a, b) => {
@@ -31,7 +31,7 @@ const SearchContentContainer = ({ searchResults}) => {
 
     const searchContent = searchResults.map(result => {
         return (
-            <div className={classes["search_container"]}>
+            <div className={cardType === "book" ? classes["book_container"] : classes["search_container"]}>
                 <SearchContent key={result.name} recipeTitle={result.name} ingredientList={result.ingredients} recipeList={result.steps} image={""} description={""}/>
             </div>
         )

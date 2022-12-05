@@ -8,6 +8,9 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Header from "./components/Header/Header";
+import RecipeBook from "./pages/RecipeBook";
+import AddRecipe from "./pages/AddRecipe";
+import LandingPage from "./pages/LandingPage";
 
 
 function App() {
@@ -17,9 +20,12 @@ function App() {
         <InventoryProvider>
           <Header/>
           <Routes>
-            <Route path='/' element={<Dashboard/>} />
+            <Route path='/' element={<LandingPage/>} />
+            <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
+            <Route path='/recipes' element={<RecipeBook/>} />
+            <Route path='/add' element={<AddRecipe/>} />
           </Routes>
         </InventoryProvider>
       </Router>
