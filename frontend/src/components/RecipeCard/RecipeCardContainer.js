@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import classes from "./SearchContentContainer.module.css"
-import SearchContent from "./SearchContent";
+import classes from "./RecipeCardContainer.module.css"
+import RecipeCard from "./RecipeCard";
 import InventoryContext from "../../context/inventory-context";
 
-const SearchContentContainer = ({ searchResults, cardType }) => {
+const RecipeCardContainer = ({ searchResults, cardType }) => {
     const inventoryCtx = useContext(InventoryContext)
 
     let sortSearchResults = searchResults.sort((a, b) => {
@@ -29,20 +29,20 @@ const SearchContentContainer = ({ searchResults, cardType }) => {
         }
     })
 
-    const searchContent = searchResults.map(result => {
+    const recipeCard = searchResults.map(result => {
         return (
             <div className={cardType === "book" ? classes["book_container"] : classes["search_container"]}>
-                <SearchContent key={result.name} recipeTitle={result.name} ingredientList={result.ingredients} recipeList={result.steps} image={""} description={""}/>
+                <RecipeCard key={result.name} recipeTitle={result.name} ingredientList={result.ingredients} recipeList={result.steps} image={""} description={""}/>
             </div>
         )
     })
 
     return (
         <div>
-            {searchContent}
+            {recipeCard}
         </div>
     )
 
 }
 
-export default SearchContentContainer;
+export default RecipeCardContainer;

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import UserInputForm from "../components/UserInput/UserInputForm";
-import SearchContentContainer from "../components/SearchContent/SearchContentContainer";
+import RecipeCardContainer from "../components/RecipeCard/RecipeCardContainer";
 import AuthContext from "../context/auth-context";
 
 function RecipeBook() {
@@ -52,7 +52,7 @@ function RecipeBook() {
               {searchData.length === 0 ? (
                 <h4>No recipes found</h4>
               ) : (
-                <SearchContentContainer
+                <RecipeCardContainer
                   availableIngredients={availableIngredients}
                   searchResults={searchData} // If the user manually refreshes, use the locStorage, otherwise the useEffect ran and returned searchData
                   cardType="book"

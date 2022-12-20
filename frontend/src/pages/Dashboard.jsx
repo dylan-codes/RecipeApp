@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import UserInputForm from "../components/UserInput/UserInputForm";
-import SearchContentContainer from "../components/SearchContent/SearchContentContainer";
+import RecipeCardContainer from "../components/RecipeCard/RecipeCardContainer";
+import AuthContext from "../context/auth-context";
 
 function Dashboard() {
   const [searchData, setSearchData] = useState([]);
-  const [availableIngredients, setAvailableIngredients] = useState([""]);
+  const AuthCtx = useContext(AuthContext)
 
-  /*   useEffect(() => {
+    useEffect(() => {
         const getRecipes = async () => {
         try {
             const response = await fetch("/api/recipes", {
             method: "GET",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            Authorization: `Bearer ${AuthCtx.user.token}` },
             });
             const data = await response.json();
 
@@ -23,15 +25,11 @@ function Dashboard() {
         };
 
         getRecipes();
-    }, []); */
+    }, []);
   /*   console.log(searchData); */
 
   const onSubmit = (searchResults) => {
     setSearchData(searchResults);
-  };
-
-  const onAddIngredient = (ingredient) => {
-    setAvailableIngredients(ingredient);
   };
 
   return (
@@ -41,14 +39,15 @@ function Dashboard() {
           <h3 className="form-header">Whatcha working with today?</h3>
           <UserInputForm
             onSubmit={onSubmit}
-            onAddIngredient={onAddIngredient}
           />
+          <button className="submit-btn" onClick={() => console.log("click")}>
+            Submit Order
+          </button>
         </div>
       </div>
 
       <div className="searchContent">
-        <SearchContentContainer
-          availableIngredients={availableIngredients}
+        <RecipeCardContainer
           searchResults={searchData}
         />
       </div>

@@ -1,0 +1,24 @@
+.addRecipe_textarea {
+    width: 1200px;
+    height: 150px;
+    padding: 30px;
+    resize: none;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.recipeInterface_addStep {
+    position: absolute;
+    right: 170px;
+    bottom: 41px;
+    background-color: rgb(255, 197, 90);
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    padding: 4px;
+}
+
+.recipeInterface_addStep :hover{
+    cursor: pointer;
+}

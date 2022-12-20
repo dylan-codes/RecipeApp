@@ -50,7 +50,7 @@ h3 {
   align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -362,32 +362,104 @@ h3 {
 
 /* ADD RECIPE CONTENT */
 
-.addrecipe-container {
+
+.addrecipe-preview {
+  display: flex;
   width: 100%;
-  max-width: 960px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px 20px;
   text-align: center;
-  border-radius: 1em;
+  border-radius: 100em;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.644);
   backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
-.content_container {
+.addrecipe-preview-header {
+  width: 1000px;
+}
+
+.addrecipe-form {
+  display: flex;
   width: 100%;
-  width: 1200px;
-  margin: 30px auto;
-  padding: 1em 15em;
+  max-width: 1500px;
+  height: 270px;
+  /* max-height: 100px; */
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 20px 20px;
   text-align: center;
-  border-radius: 1em;
+  border-radius: 100em;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.644);
   backdrop-filter: blur(5px);
-  /* background-color: rgba(255, 255, 255); */
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.addrecipe-form input{
+  margin: 1px;
+}
+.addrecipe-form .btn {
+  margin-left: 10px;
+}
+
+.dont-break-out-of-div {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 
+.addrecipe-button {
+  position: absolute;
+  right: 110px;
 
+}
 
-
-
+.addrecipe-button .btn{
+  background-color: orange;
+  border-color: rgb(138, 90, 0);
+  border-radius: 50px;
+}
 /* END ADD RECIPE CONTENT */
+
+
+/* RecipeCard Component */
+
+.submit-btn {
+  margin: 15px;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* END RecipeCard Component */

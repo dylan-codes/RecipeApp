@@ -1,0 +1,51 @@
+.ingredient_dropdown{
+    position: absolute;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: goldenrod;
+    background-color: rgba(245, 245, 245, 0.603);
+    left: 5.5px;
+    bottom: 6px;
+    border-radius: 5px
+  }
+  
+  .ingredient_dropdown ul {
+    width: 190px;
+    max-height: 75px;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 5px;
+  }
+  .ingredient_dropdown li {
+    background-color: rgba(255, 208, 0, 0.315);
+    border-bottom: #000;
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+  }
+  .ingredient_dropdown li:hover {
+    cursor: pointer;
+    background-color: rgba(255, 208, 0, 0.918);
+  }
+  .ingredient_dropdown ul::-webkit-scrollbar {
+    background-color: rgba(255, 208, 0, 0.315);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 5px;
+  }
+  
+  .ingredient_dropdown ul::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-color: rgb(255, 208, 0);
+    outline: 1px solid rgb(167, 136, 0);
+  
+  }
+
+  .form_content {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 1em;
+    padding-bottom: 5em;
+    /* width: 228.5px; */
+  }

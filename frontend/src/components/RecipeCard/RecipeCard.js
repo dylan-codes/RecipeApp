@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import Card from "../UI/Card";
-import classes from "./SearchContent.module.css";
+import classes from "./RecipeCard.module.css";
 import placeholderImg from "../../images/icons/SVG/placeholder.jpg";
 import InventoryContext from "../../context/inventory-context";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, description, availableIngredients }) => {
+const RecipeCard = ({ recipeTitle, ingredientList, recipeList, image, description, availableIngredients }) => {
   const inventoryCtx = useContext(InventoryContext);
 
   const ingredients = ingredientList.map((ingredient) => {
@@ -50,7 +50,7 @@ const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, descrip
             </div>
             <div className={classes.description}>
                 <h4>Description:</h4>
-                <p>
+                <p className="dont-break-out-of-div">
                     classic flavor for a classic person. Serves 2 or more.. possible to serve over 1,000 depending on how much of the ingredients you hbave..
                 </p>
             </div>
@@ -74,4 +74,4 @@ const SearchContent = ({ recipeTitle, ingredientList, recipeList, image, descrip
   );
 };
 
-export default SearchContent;
+export default RecipeCard;

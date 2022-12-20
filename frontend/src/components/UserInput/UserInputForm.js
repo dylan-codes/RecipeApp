@@ -5,14 +5,21 @@ import InventoryContext from "../../context/inventory-context";
 import AuthContext from "../../context/auth-context";
 
 const UserInputForm = ({ onSubmit, onAddIngredient }) => {
-  const [userInput, setUserInput] = useState("");
-  const [recipeList, setRecipeList] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
-  const [fetchController, setFetchController] = useState({});
   const inventoryCtx = useContext(InventoryContext);
   const AuthCtx = useContext(AuthContext);
+  const [userInput, setUserInput] = useState("");
+  const [ingredientList, setIngredientList] = useState(
+    inventoryCtx.items.map((ingredient) => {
+      return { id: Math.random(), value: ingredient };
+    })
+  );
+  const [searchResults, setSearchResults] = useState([]);
+  const [fetchController, setFetchController] = useState({});
+  console.log([...inventoryCtx.items]);
+  console.log(ingredientList);
 
   const submitUserInput = (parameter) => (event) => {
+    console.log("hello");
     console.log(parameter);
     event.preventDefault();
     if (searchResults.includes(userInput)) {
@@ -23,18 +30,17 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   };
 
   const addIngredientHandler = (event) => {
+    console.log("hello");
     event.preventDefault();
-
+    console.log(searchResults.includes(userInput), userInput);
     if (searchResults.includes(userInput.toLowerCase())) {
       inventoryCtx.addItem(userInput);
 
-      setRecipeList([
-        ...recipeList,
+      setIngredientList([
+        ...ingredientList,
         {
           id: Math.random(),
-          value:
-            userInput.charAt(0).toUpperCase() +
-            userInput.slice(1).toLowerCase(),
+          value: userInput
         },
       ]);
       setUserInput("");
@@ -44,13 +50,13 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   };
 
   const removeIngredientHandler = (deletedIngredient) => (event) => {
-    const newArray = recipeList.filter(
-      (recipe) => recipe.id !== deletedIngredient.id
+    const newArray = ingredientList.filter(
+      (ingredient) => ingredient.id !== deletedIngredient.id
     );
 
     inventoryCtx.removeItem(deletedIngredient.value);
 
-    return setRecipeList(newArray);
+    return setIngredientList(newArray);
   };
 
   const ingredientInputHandler = async (event) => {
@@ -95,14 +101,15 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   };
 
   const submitIngredients = (event) => {
-    console.log(AuthCtx.user.token);
+    console.log(ingredientList);
+    console.log(inventoryCtx.items);
     fetch("/api/recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${AuthCtx.user.token}`,
       },
-      body: JSON.stringify({ payload: recipeList }),
+      body: JSON.stringify({ payload: ingredientList }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -112,12 +119,12 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
       });
   };
 
-  const recipeMap = recipeList.map((recipe) => {
+  const ingredientMap = ingredientList.map((ingredient) => {
     return (
       <UserInput
-        key={recipe.id}
-        onRemove={removeIngredientHandler(recipe)}
-        recipe={recipe}
+        key={ingredient.id}
+        onRemove={removeIngredientHandler(ingredient)}
+        ingredient={ingredient}
       />
     );
   });
@@ -129,7 +136,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
           <input
             value={userInput}
             onBlur={() => {
-              setSearchResults([]);
+              /*   setSearchResults([]); */
             }}
             onChange={ingredientInputHandler}
           ></input>
@@ -141,7 +148,11 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
               <ul>
                 {searchResults.map((result) => {
                   return (
-                    <li key={result} onClick={() => submitUserInput(result)}>
+                    <li
+                      value={result}
+                      key={result}
+                      onClick={() => submitUserInput(result)}
+                    >
                       {result}
                     </li>
                   );
@@ -151,11 +162,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
           )}
         </div>
       </form>
-      <ul className={classes.ingredientList}>{recipeMap}</ul>
-
-      <button className={classes.btn} onClick={submitIngredients}>
-        Submit Order
-      </button>
+      <ul className={classes.ingredientList}>{ingredientMap}</ul>
     </div>
   );
 };

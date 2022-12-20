@@ -1,0 +1,14 @@
+.ingredientForm {
+    width: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ingredientInput {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 1em;
+    font-family: inherit;
+}

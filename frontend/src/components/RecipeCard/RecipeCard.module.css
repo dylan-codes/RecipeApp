@@ -10,7 +10,7 @@
 
 .search_info {
   display: flex;
-  justify-content: space-between;
+
 }
 
 .column1 {
@@ -27,7 +27,9 @@
 .description {
     padding-top: 1em;
     text-align: left;
-    max-width: 300px;
+    width: 220px;
+    min-height: 200px;
+/*     background-color: cornsilk; */
 }
 
 .column2 {
@@ -41,10 +43,16 @@
 
 .ingredients_container {
   text-align: left;
+  width:  500px;
+  min-height: 200px;
+/*   background-color: bisque; */
 }
 
 .recipe {
   text-align: left;
+/*   background-color: blanchedalmond; */
+  width:  500px;
+  min-height: 200px;
 }
 
 .text_has {

@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import UserInputForm from "./components/UserInput/UserInputForm";
-import SearchContentContainer from "./components/SearchContent/SearchContentContainer";
+import RecipeCardContainer from "./components/RecipeCard/RecipeCardContainer";
 import InventoryProvider from "./context/InventoryProvider";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Dashboard from "./pages/Dashboard";
