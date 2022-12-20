@@ -15,12 +15,8 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   );
   const [searchResults, setSearchResults] = useState([]);
   const [fetchController, setFetchController] = useState({});
-  console.log([...inventoryCtx.items]);
-  console.log(ingredientList);
 
   const submitUserInput = (parameter) => (event) => {
-    console.log("hello");
-    console.log(parameter);
     event.preventDefault();
     if (searchResults.includes(userInput)) {
       addIngredientHandler();
@@ -30,9 +26,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   };
 
   const addIngredientHandler = (event) => {
-    console.log("hello");
     event.preventDefault();
-    console.log(searchResults.includes(userInput), userInput);
     if (searchResults.includes(userInput.toLowerCase())) {
       inventoryCtx.addItem(userInput);
 
@@ -101,8 +95,6 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   };
 
   const submitIngredients = (event) => {
-    console.log(ingredientList);
-    console.log(inventoryCtx.items);
     fetch("/api/recipes", {
       method: "POST",
       headers: {

@@ -8,10 +8,10 @@ import classes from "../components/RecipeCard/RecipeCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-import burgerImg from "../images/icons/SVG/burgir.svg";
+import burgerImg from "../images/icons/SVG/burger.svg";
 import hotdogImg from "../images/icons/SVG/hotdog.svg";
 import missingImg from "../images/icons/SVG/Missing.svg";
-import pizzaImg from "../images/icons/SVG/pizza_1.svg";
+import pizzaImg from "../images/icons/SVG/pizza.svg";
 import chickenImg from "../images/icons/SVG/chicken.svg";
 
 

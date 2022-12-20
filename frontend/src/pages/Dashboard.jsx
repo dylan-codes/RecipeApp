@@ -29,6 +29,7 @@ function Dashboard() {
 
   const onSubmit = (searchResults) => {
     setSearchData(searchResults);
+    console.log(searchResults)
   };
 
   return (

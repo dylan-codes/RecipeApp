@@ -3,8 +3,16 @@ import Card from "../UI/Card";
 import classes from "./RecipeCard.module.css";
 import placeholderImg from "../../images/icons/SVG/placeholder.jpg";
 import InventoryContext from "../../context/inventory-context";
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+
+import burgerImg from "../../images/icons/SVG/burger.svg";
+import hotdogImg from "../../images/icons/SVG/hotdog.svg";
+import missingImg from "../../images/icons/SVG/Missing.svg";
+import pizzaImg from "../../images/icons/SVG/pizza.svg";
+import chickenImg from "../../images/icons/SVG/chicken.svg";
 
 const RecipeCard = ({ recipeTitle, ingredientList, recipeList, image, description, availableIngredients }) => {
   const inventoryCtx = useContext(InventoryContext);
@@ -46,12 +54,12 @@ const RecipeCard = ({ recipeTitle, ingredientList, recipeList, image, descriptio
       <div className={classes["search_info"]}>
         <div className={classes.column1}>
             <div className={classes.imageContent}>
-            <img className={classes.imageContent} src={placeholderImg} alt={"Food"}></img>
+            <img className={classes.imageContent} src={image} alt={"Food"}></img>
             </div>
             <div className={classes.description}>
                 <h4>Description:</h4>
                 <p className="dont-break-out-of-div">
-                    classic flavor for a classic person. Serves 2 or more.. possible to serve over 1,000 depending on how much of the ingredients you hbave..
+                    {description}
                 </p>
             </div>
         </div>

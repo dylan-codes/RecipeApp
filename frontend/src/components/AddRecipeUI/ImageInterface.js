@@ -1,7 +1,7 @@
-import burgerImg from "../../images/icons/SVG/burgir.svg";
+import burgerImg from "../../images/icons/SVG/burger.svg";
 import hotdogImg from "../../images/icons/SVG/hotdog.svg";
 import missingImg from "../../images/icons/SVG/Missing.svg";
-import pizza from "../../images/icons/SVG/pizza_1.svg";
+import pizza from "../../images/icons/SVG/pizza.svg";
 import chicken from "../../images/icons/SVG/chicken.svg"
 import classes from "./ImageInterface.module.css"
 
