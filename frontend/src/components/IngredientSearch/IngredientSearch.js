@@ -37,13 +37,11 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
       ]); */
 
       let ingredient = {
-        value:
+        name:
           ingredientName.charAt(0).toUpperCase() +
-          ingredientName.slice(1).toLowerCase() +
-          " (" +
-          ingredientAmount +
-          ") ",
-        id: Math.random(),
+          ingredientName.slice(1).toLowerCase(),
+        amount: 
+          ingredientAmount,
       };
 
       addIngredient(ingredient);

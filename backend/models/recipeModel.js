@@ -20,6 +20,10 @@ const recipeSchema = mongoose.Schema(
     description: {
       type: String,
       required: [true, "Please add a recipe description."]
+    },
+    image: {
+      type: String,
+      required: [true, "Please select an image for the recipe"]
     }
   },
   {

@@ -14,10 +14,8 @@ const RecipeInterface = ({ recipeSteps, addRecipeStepHandler }) => {
   const submitRecipeStep = (event) => {
     event.preventDefault();
 
-    let step = {
-      value: recipeStep,
-      id: Math.random(),
-    };
+    let step = recipeStep;
+    
 
     addRecipeStepHandler(step);
     setRecipeStep("")

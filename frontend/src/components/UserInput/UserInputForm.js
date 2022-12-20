@@ -163,6 +163,10 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
         </div>
       </form>
       <ul className={classes.ingredientList}>{ingredientMap}</ul>
+
+      <button className={classes.btn} onClick={submitIngredients}>
+        Submit Order
+      </button>
     </div>
   );
 };

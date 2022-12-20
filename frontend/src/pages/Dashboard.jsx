@@ -7,7 +7,7 @@ function Dashboard() {
   const [searchData, setSearchData] = useState([]);
   const AuthCtx = useContext(AuthContext)
 
-    useEffect(() => {
+/*     useEffect(() => {
         const getRecipes = async () => {
         try {
             const response = await fetch("/api/recipes", {
@@ -20,12 +20,11 @@ function Dashboard() {
             setSearchData(data.results);
         } catch (error) {
             console.error("Error fetching data: ", error);
-        } finally {
         }
         };
 
         getRecipes();
-    }, []);
+    }, []); */
   /*   console.log(searchData); */
 
   const onSubmit = (searchResults) => {
@@ -40,9 +39,6 @@ function Dashboard() {
           <UserInputForm
             onSubmit={onSubmit}
           />
-          <button className="submit-btn" onClick={() => console.log("click")}>
-            Submit Order
-          </button>
         </div>
       </div>
 

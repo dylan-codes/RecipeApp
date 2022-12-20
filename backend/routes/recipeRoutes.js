@@ -4,7 +4,7 @@ const { getUserRecipes, getRecipesAll, setRecipeCriteria, createRecipe, updateRe
 const {protect} = require('../middleware/authMiddleware')
 
 //getUserRecipes or getRecipesAll
-router.route("/").get(protect, getRecipesAll).post(protect, setRecipeCriteria)
+router.route("/").get(protect, getUserRecipes).post(protect, setRecipeCriteria)
 router.route("/create").post(protect, createRecipe)
 router.route("/:id").put(protect, updateRecipe).delete(protect, deleteRecipe)
 

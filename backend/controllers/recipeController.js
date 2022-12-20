@@ -48,7 +48,7 @@ const setRecipeCriteria = asyncHandler(async (req, res) => {
 // @route   POST /api/recipes/create
 // @access  Private
 const createRecipe = asyncHandler(async (req, res) => {
-  if (!req.body.name || !req.body.steps || !req.body.ingredients || !req.body.description) {
+  if (!req.body.name || !req.body.steps || !req.body.ingredients || !req.body.description || !req.body.image) {
     res.status(400);
     throw new Error("Please add all fields");
   }
@@ -58,6 +58,7 @@ const createRecipe = asyncHandler(async (req, res) => {
     steps: req.body.steps,
     ingredients: req.body.ingredients,
     description: req.body.description,
+    image: req.body.image,
     user: req.user.id
   });
 

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Card from "../components/UI/Card";
 import AddRecipeUI from "../components/AddRecipeUI/AddRecipeUI";
 import IngredientSearch from "../components/IngredientSearch/IngredientSearch";
+import AuthContext from "../context/auth-context";
 
 import classes from "../components/RecipeCard/RecipeCard.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ import chickenImg from "../images/icons/SVG/chicken.svg";
 
 
 function AddRecipe() {
+  const AuthCtx = useContext(AuthContext);
   const [inputInterface, setInputInterface] = useState("default");
   const [title, setTitle] = useState("Title");
   const [ingredientList, setIngredientList] = useState([]);
@@ -77,8 +79,21 @@ function AddRecipe() {
     setRecipeSteps(() => [...recipeSteps, step]);
   };
 
-  const submitRecipe = () => {
-    console.log(title, image, description, ingredientList, recipeSteps)
+  const submitRecipe = async () => {
+    console.log(recipeSteps)
+    console.log(JSON.stringify({name: title, steps: recipeSteps, ingredients: ingredientList, description: description, image: image }))
+    try {
+      const response = await fetch("/api/recipes/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json",
+        Authorization: `Bearer ${AuthCtx.user.token}` },
+        body: JSON.stringify({name: title, steps: recipeSteps, ingredients: ingredientList, description: description, image: image })
+        });
+        const data = await response.json();
+        console.log(data)
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   }
 
   return (
@@ -121,10 +136,10 @@ function AddRecipe() {
                   {ingredientList.map((ingredient) => {
                     return (
                       <li
-                        id={ingredient.id}
+                        id={Math.random()}
                         onClick={(e) => handleIngredientClick(e)}
                       >
-                        {ingredient.value}
+                        {ingredient.name + " (" + ingredient.amount + ")"}
                       </li>
                     );
                   })}
@@ -139,10 +154,10 @@ function AddRecipe() {
                   {recipeSteps.map((step) => {
                     return (
                       <li
-                        id={step.id}
+                        id={Math.random()}
                         onClick={(e) => console.log("clicked recipe step!")}
                       >
-                        {step.value}
+                        {step}
                       </li>
                     );
                   })}
