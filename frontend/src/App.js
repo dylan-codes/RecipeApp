@@ -12,6 +12,7 @@ import RecipeBook from "./pages/RecipeBook";
 import AddRecipe from "./pages/AddRecipe";
 import LandingPage from "./pages/LandingPage";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import PublicRoutes from "./utils/PublicRoutes";
 
 
 function App() {
@@ -21,16 +22,16 @@ function App() {
         <InventoryProvider>
           <Header/>
           <Routes>
-            <Route path='/' element={<LandingPage/>} />
-            <Route path='/login' element={<Login/>} />
-            <Route path='/register' element={<Register/>} />
+            <Route element={<PublicRoutes/>}>
+              <Route path='/' element={<LandingPage/>} />
+              <Route path='/login' element={<Login/>} />
+              <Route path='/register' element={<Register/>} />
+            </Route>
             <Route element={<ProtectedRoutes/>}>
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/recipes' element={<RecipeBook/>} />
               <Route path='/add' element={<AddRecipe key={"AddRecipe"}/>} />
             </Route>
-            
-
           </Routes>
         </InventoryProvider>
       </Router>
