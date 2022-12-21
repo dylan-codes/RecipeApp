@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 import InventoryContext from "./inventory-context";
 
@@ -7,25 +7,31 @@ const defaultInventoryState = {
 };
 
 const inventoryReducer = (state, action) => {
+  if (action.type === "FILL") {
+    return {
+      items: action.items
+    }
+  }
   if (action.type === "ADD") {
     let updatedInventory = [...state.items];
     updatedInventory.push(action.item);
+    localStorage.setItem("saved_ingredients", JSON.stringify(updatedInventory));
     return {
       items: updatedInventory,
     };
   }
   if (action.type === "REMOVE") {
     let inventory = [...state.items];
-    console.log(action.item);
     let updatedInventory = inventory.filter(
       (ingredient) => ingredient !== action.item
     );
-    console.log(updatedInventory);
+    localStorage.setItem("saved_ingredients", JSON.stringify(updatedInventory));
     return {
       items: updatedInventory,
     };
   }
   if (action.type === "CLEAR") {
+    localStorage.removeItem("saved_ingredients");
     return {
       items: [],
     };
@@ -38,6 +44,14 @@ const InventoryProvider = (props) => {
     inventoryReducer,
     defaultInventoryState
   );
+
+  useEffect(() => {
+    const ingredients = JSON.parse(localStorage.getItem('saved_ingredients'))
+
+    if (ingredients) {
+      dispatchInventoryAction({ type: 'FILL', items: ingredients })
+    }
+  }, [])
 
   const addItemToInventory = (item) => {
     dispatchInventoryAction({ type: "ADD", item: item });
@@ -57,6 +71,8 @@ const InventoryProvider = (props) => {
     removeItem: removeItemFromCartHandler,
     clear: clearItemsFromCartHandler
   };
+  
+  console.log('Inventory state: ', inventoryState)
 
   return (
     <InventoryContext.Provider value={inventoryContext}>
