@@ -14,7 +14,6 @@ import missingImg from "../images/icons/SVG/Missing.svg";
 import pizzaImg from "../images/icons/SVG/pizza.svg";
 import chickenImg from "../images/icons/SVG/chicken.svg";
 
-
 function AddRecipe() {
   const AuthCtx = useContext(AuthContext);
   const [inputInterface, setInputInterface] = useState("default");
@@ -82,26 +81,38 @@ function AddRecipe() {
   };
 
   const submitRecipe = async () => {
-    console.log(recipeSteps)
-    console.log(JSON.stringify({name: title, steps: recipeSteps, ingredients: ingredientList, description: description, image: image }))
+    console.log(recipeSteps);
+    console.log(
+      JSON.stringify({
+        name: title,
+        steps: recipeSteps,
+        ingredients: ingredientList,
+        description: description,
+        image: image,
+      })
+    );
     try {
       const response = await fetch("/api/recipes/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json",
-        Authorization: `Bearer ${AuthCtx.user.token}` },
-        body: JSON.stringify({name: title, steps: recipeSteps, ingredients: ingredientList, description: description, image: image })
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${AuthCtx.user.token}`,
+        },
+        body: JSON.stringify({
+          name: title,
+          steps: recipeSteps,
+          ingredients: ingredientList,
+          description: description,
+          image: image,
+        }),
       });
-      
+
       const data = await response.json();
 
-      
-
-      
-      
       if (data.stack) {
         setError(true);
       } else {
-        setError(false)
+        setError(false);
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
@@ -109,19 +120,18 @@ function AddRecipe() {
       }
     } catch (error) {
       console.error("Error fetching data: ", error);
-      
     }
-  }
+  };
 
   return (
     <>
       <div className="addrecipe-preview">
         <h4 className="addrecipe-preview-header">Recipe Preview</h4>
-        <Card>
+        <Card key={"PreviewCard"}>
           <div className={classes["search_header"]}>
             <h3 onClick={() => interfaceChangeHandler("title")}>{title}</h3>
             <a className={classes["favorite_star"]}>
-              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon icon={faStar} key={"faStar"}/>
             </a>
           </div>
           <div className={classes["search_info"]}>
@@ -184,13 +194,22 @@ function AddRecipe() {
           </div>
         </Card>
         <div className="addrecipe-button">
-          <button className="btn" onClick={submitRecipe}>Add Recipe</button>
-          {error && <span className="error">Failed to create! Make sure you have entered all fields.</span>}
-          {success && <span className="success">Recipe successfully created!</span>}
+          <button className="btn" onClick={submitRecipe}>
+            Add Recipe
+          </button>
+          {error && (
+            <span className="error">
+              Failed to create! Make sure you have entered all fields.
+            </span>
+          )}
+          {success && (
+            <span className="success">Recipe successfully created!</span>
+          )}
         </div>
       </div>
       <div className="addrecipe-form">
         <AddRecipeUI
+          key={"AddRecipeMenu"}
           inputInterface={inputInterface}
           onImageChange={imageChangeHandler}
           onTitleChange={titleChangeHandler}

@@ -27,7 +27,7 @@ function App() {
             <Route element={<ProtectedRoutes/>}>
               <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/recipes' element={<RecipeBook/>} />
-              <Route path='/add' element={<AddRecipe/>} />
+              <Route path='/add' element={<AddRecipe key={"AddRecipe"}/>} />
             </Route>
             
 

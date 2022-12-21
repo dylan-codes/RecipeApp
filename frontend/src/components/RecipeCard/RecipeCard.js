@@ -46,10 +46,10 @@ const RecipeCard = ({ recipeTitle, ingredientList, recipeList, image, descriptio
   });
 
   return (
-    <Card>
+    <Card key={recipeTitle.replace(/\s+/g, '-') + "_Card"}>
       <div className={classes["search_header"]}>
         <h3>{recipeTitle}</h3>
-        <a className={classes["favorite_star"]}><FontAwesomeIcon icon={faStar} /></a>
+        <a className={classes["favorite_star"]}><FontAwesomeIcon icon={faStar} key={recipeTitle.replace(/\s+/g, '-') + "_faStar"}/></a>
       </div>
       <div className={classes["search_info"]}>
         <div className={classes.column1}>

@@ -44,6 +44,7 @@ function Dashboard() {
 
       <div className="searchContent">
         <RecipeCardContainer
+          key={"RecipeContainer"}
           searchResults={searchData}
         />
       </div>

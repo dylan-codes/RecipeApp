@@ -16,17 +16,24 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [fetchController, setFetchController] = useState({});
 
-  const submitUserInput = (parameter) => (event) => {
-    event.preventDefault();
-    if (searchResults.includes(userInput)) {
-      addIngredientHandler();
-      setUserInput("");
-    } else {
-    }
+  const submitDropDownIngredient = (result) =>  {
+    console.log("Clicked List Element")
+    console.log(result)
+
+    setIngredientList([
+      ...ingredientList,
+      {
+        id: Math.random(),
+        value: result
+      },
+    ]);
+    setUserInput("");
+    setSearchResults([]);
+
   };
 
   const addIngredientHandler = (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     if (searchResults.includes(userInput.toLowerCase())) {
       inventoryCtx.addItem(userInput);
 
@@ -143,7 +150,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
                     <li
                       value={result}
                       key={result}
-                      onClick={() => submitUserInput(result)}
+                      onClick={() => submitDropDownIngredient(result)}
                     >
                       {result}
                     </li>

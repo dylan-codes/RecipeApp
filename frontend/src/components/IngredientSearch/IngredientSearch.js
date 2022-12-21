@@ -8,42 +8,43 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
   const [fetchController, setFetchController] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
 
-  const selectDropdownIngredient = (parameter) => (event) => {
+  const submitDropDownIngredient = (result) =>  {
+    console.log("Clicked List Element")
+    console.log(result)
 
-    event.preventDefault();
-    if (searchResults.includes(ingredientName)) {
-      submitIngredient();
-      setIngredientName("");
-    } else {
-    }
+
+    let ingredient = {
+      name:
+        result.charAt(0).toUpperCase() +
+        result.slice(1).toLowerCase(),
+      amount: ingredientAmount,
+    };
+
+    addIngredient(ingredient);
+
+
+    console.log(ingredientList)
+    setIngredientName("");
+    setIngredientAmount("");
+    setSearchResults([]);
   };
+
+  
 
   const submitIngredient = (event) => {
     event.preventDefault();
     if (searchResults.includes(ingredientName.toLowerCase())) {
-      /*       setIngredientList([
-        ...ingredientList,
-        {
-          id: Math.random(),
-          value:
-            ingredientName.charAt(0).toUpperCase() +
-            ingredientName.slice(1).toLowerCase() +
-            " (" +
-            ingredientAmount +
-            ") ",
-        },
-      ]); */
 
       let ingredient = {
         name:
           ingredientName.charAt(0).toUpperCase() +
           ingredientName.slice(1).toLowerCase(),
-        amount: 
-          ingredientAmount,
+        amount: ingredientAmount,
       };
 
       addIngredient(ingredient);
       setIngredientName("");
+      setIngredientAmount("");
       setSearchResults([]);
     } else {
     }
@@ -121,7 +122,7 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
                   <li
                     value={result}
                     key={result}
-                    onClick={() => selectDropdownIngredient(result)}
+                    onClick={() => submitDropDownIngredient(result)}
                   >
                     {result}
                   </li>

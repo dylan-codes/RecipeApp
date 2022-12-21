@@ -52,6 +52,7 @@ function RecipeBook() {
                 <h4>No recipes found</h4>
               ) : (
                 <RecipeCardContainer
+                  key={"RecipeBookContainer"}
                   availableIngredients={availableIngredients}
                   searchResults={searchData} // If the user manually refreshes, use the locStorage, otherwise the useEffect ran and returned searchData
                   cardType="book"

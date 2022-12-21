@@ -32,7 +32,7 @@ const RecipeCardContainer = ({ searchResults, cardType }) => {
     const recipeCard = searchResults.map(result => {
         return (
             <div className={cardType === "book" ? classes["book_container"] : classes["search_container"]}>
-                <RecipeCard key={result.name} recipeTitle={result.name} ingredientList={result.ingredients} recipeList={result.steps} image={result.image} description={result.description}/>
+                <RecipeCard key={result.name.replace(/\s+/g, '-') + "_BookEntry"} recipeTitle={result.name} ingredientList={result.ingredients} recipeList={result.steps} image={result.image} description={result.description}/>
             </div>
         )
     })
