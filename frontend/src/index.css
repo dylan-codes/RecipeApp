@@ -463,3 +463,19 @@ h3 {
 
 
 /* END RecipeCard Component */
+
+.error {
+  color: rgb(255, 61, 61);
+  position: absolute;
+  left: -7px;
+  right: 4px;
+  width: 150px;
+}
+
+.success {
+  color: rgb(21, 184, 21);
+  position: absolute;
+  left: -29px;
+  right: 4px;
+  width: 195px;
+}

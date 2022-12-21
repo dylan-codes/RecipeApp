@@ -32,7 +32,6 @@ function RecipeBook() {
 
     getRecipes();
   }, []);
-  console.log(searchData);
 
   return (
     <>

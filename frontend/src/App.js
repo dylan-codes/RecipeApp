@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import RecipeBook from "./pages/RecipeBook";
 import AddRecipe from "./pages/AddRecipe";
 import LandingPage from "./pages/LandingPage";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 
 function App() {
@@ -21,11 +22,15 @@ function App() {
           <Header/>
           <Routes>
             <Route path='/' element={<LandingPage/>} />
-            <Route path='/dashboard' element={<Dashboard/>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/register' element={<Register/>} />
-            <Route path='/recipes' element={<RecipeBook/>} />
-            <Route path='/add' element={<AddRecipe/>} />
+            <Route element={<ProtectedRoutes/>}>
+              <Route path='/dashboard' element={<Dashboard/>} />
+              <Route path='/recipes' element={<RecipeBook/>} />
+              <Route path='/add' element={<AddRecipe/>} />
+            </Route>
+            
+
           </Routes>
         </InventoryProvider>
       </Router>

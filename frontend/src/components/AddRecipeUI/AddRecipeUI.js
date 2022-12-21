@@ -5,7 +5,6 @@ import RecipeInterface from "./RecipeInterface";
 import TitleInterface from "./TitleInterface";
 
 const AddRecipeUI = ({ inputInterface, onImageChange, onTitleChange, onDescriptionChange, addIngredientHandler, removeIngredientHandler, recipeSteps, addRecipeStepHandler }) => {
-    console.log(recipeSteps.length)
     const interfaceSwitch = () => {
         switch (inputInterface) {
             case 'description':

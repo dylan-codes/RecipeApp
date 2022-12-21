@@ -1,0 +1,25 @@
+.fa-white {
+    color: white;
+}
+
+.landing-container {
+
+}
+
+.landing-header {
+    height: 500px;
+}
+
+.landing-img {
+    border-radius: 50px;
+    padding-top: 20px;
+}
+
+.landing-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.landing-nav button {
+    margin: 5px;
+}

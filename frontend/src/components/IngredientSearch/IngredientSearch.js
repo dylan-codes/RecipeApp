@@ -9,8 +9,7 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
   const [ingredientList, setIngredientList] = useState([]);
 
   const selectDropdownIngredient = (parameter) => (event) => {
-    console.log("hello");
-    console.log(parameter);
+
     event.preventDefault();
     if (searchResults.includes(ingredientName)) {
       submitIngredient();
@@ -21,7 +20,6 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
 
   const submitIngredient = (event) => {
     event.preventDefault();
-    console.log(searchResults.includes(ingredientName), ingredientName);
     if (searchResults.includes(ingredientName.toLowerCase())) {
       /*       setIngredientList([
         ...ingredientList,

@@ -23,6 +23,8 @@ function AddRecipe() {
   const [recipeSteps, setRecipeSteps] = useState([]);
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(missingImg);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const interfaceChangeHandler = (inputElement) => {
     setInputInterface(inputElement);
@@ -88,11 +90,26 @@ function AddRecipe() {
         headers: { "Content-Type": "application/json",
         Authorization: `Bearer ${AuthCtx.user.token}` },
         body: JSON.stringify({name: title, steps: recipeSteps, ingredients: ingredientList, description: description, image: image })
-        });
-        const data = await response.json();
-        console.log(data)
+      });
+      
+      const data = await response.json();
+
+      
+
+      
+      
+      if (data.stack) {
+        setError(true);
+      } else {
+        setError(false)
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 5000);
+      }
     } catch (error) {
       console.error("Error fetching data: ", error);
+      
     }
   }
 
@@ -168,6 +185,8 @@ function AddRecipe() {
         </Card>
         <div className="addrecipe-button">
           <button className="btn" onClick={submitRecipe}>Add Recipe</button>
+          {error && <span className="error">Failed to create! Make sure you have entered all fields.</span>}
+          {success && <span className="success">Recipe successfully created!</span>}
         </div>
       </div>
       <div className="addrecipe-form">

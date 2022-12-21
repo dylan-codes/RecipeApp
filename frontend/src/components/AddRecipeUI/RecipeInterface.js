@@ -8,7 +8,6 @@ const RecipeInterface = ({ recipeSteps, addRecipeStepHandler }) => {
 
   const stepChangeHandler = (event) => {
     setRecipeStep(event.target.value);
-    console.log(recipeStep);
   };
 
   const submitRecipeStep = (event) => {
