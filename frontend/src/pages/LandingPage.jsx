@@ -27,20 +27,22 @@ const LandingPage = () => {
           </div>
 
           <div className={classes["landing-nav"]}>
-            <button className="btn">
+            
               <Link to={"/login"} className={classes["fa-white"]}>
-                <FontAwesomeIcon icon={faSignInAlt} />
-                Login
+                <button className="btn">
+                  <FontAwesomeIcon icon={faSignInAlt} />
+                  Login
+                </button>
               </Link>
-            </button>
-            <button className="btn">
+            
               <Link to={"/register"} className={classes["fa-white"]}>
-                <FontAwesomeIcon icon={faUser} /> 
-                Register
+                <button className="btn">
+                  <FontAwesomeIcon icon={faUser} /> 
+                  Register
+                </button>
               </Link>
-            </button>
+              
           </div>
-
         </div>
       </div>
     </>

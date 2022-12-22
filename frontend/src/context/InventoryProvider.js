@@ -71,8 +71,6 @@ const InventoryProvider = (props) => {
     removeItem: removeItemFromCartHandler,
     clear: clearItemsFromCartHandler
   };
-  
-  console.log('Inventory state: ', inventoryState)
 
   return (
     <InventoryContext.Provider value={inventoryContext}>

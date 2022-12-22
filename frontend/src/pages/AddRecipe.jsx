@@ -53,8 +53,8 @@ function AddRecipe() {
   };
 
   const addIngredientHandler = (ingredient) => {
+    if (!ingredientList) setRecipeSteps([ingredient]); // If it's the first iteration.
     setIngredientList(() => [...ingredientList, ingredient]);
-    console.log(ingredientList);
   };
 
   const removeIngredientHandler = (id) => {
@@ -64,34 +64,25 @@ function AddRecipe() {
         return String(ingredient.id) !== String(id);
       })
     );
-
-    console.log(ingredientList);
   };
 
   const handleIngredientClick = (e) => {
     e.stopPropagation();
-    console.log(e.target.attributes.id.value);
     let ingredientId = e.target.attributes.id.value;
     removeIngredientHandler(ingredientId);
     /* setInputInterface("editIngredient") */
   };
 
   const addRecipeStepHandler = (step) => {
+    if (!recipeSteps) setRecipeSteps([step])
     setRecipeSteps(() => [...recipeSteps, step]);
   };
 
   const submitRecipe = async () => {
-    console.log(recipeSteps);
-    console.log(
-      JSON.stringify({
-        name: title,
-        steps: recipeSteps,
-        ingredients: ingredientList,
-        description: description,
-        image: image,
-      })
-    );
     try {
+      if (ingredientList.length === 0 || recipeSteps.length === 0) {
+        throw new Error("All input is required");
+      }
       const response = await fetch("/api/recipes/create", {
         method: "POST",
         headers: {
@@ -107,6 +98,11 @@ function AddRecipe() {
         }),
       });
 
+      if (!response.ok){
+        setError(true);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.stack) {
@@ -119,6 +115,7 @@ function AddRecipe() {
         }, 5000);
       }
     } catch (error) {
+      setError(true);
       console.error("Error fetching data: ", error);
     }
   };
@@ -182,7 +179,6 @@ function AddRecipe() {
                     return (
                       <li
                         id={Math.random()}
-                        onClick={(e) => console.log("clicked recipe step!")}
                       >
                         {step}
                       </li>

@@ -9,7 +9,6 @@ const defaultAuthState = {
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN': 
-    console.log("Logging in")
       return { user: action.payload }
     case 'LOGOUT': 
       return { user: null }
@@ -31,8 +30,6 @@ const AuthProvider = (props) => {
       dispatchAuthAction({ type: 'LOGIN', payload: user })
     }
   }, [])
-
-  console.log('AuthContext state: ', state)
 
   const logout = () => {
     dispatchAuthAction({ type: "LOGOUT"});

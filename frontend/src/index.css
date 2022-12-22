@@ -257,6 +257,9 @@ h3 {
   color: #ef3737;
 }
 
+.search-error {
+  padding-top: 50px;
+}
 
 /* RECIPE BOOK CONTENT */
 .recipebook {

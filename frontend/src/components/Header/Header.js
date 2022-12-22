@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt, faSignOutAlt, faBook, faBox, faPen, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSignInAlt, faSignOutAlt, faBook, faBox, faPen, faUser, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useLogout } from '../../hooks/use-logout'
 import AuthContext from '../../context/auth-context'
 import { useNavigate } from 'react-router-dom'
@@ -27,8 +27,12 @@ function Header() {
         </Link>
         
         <ul>
+
           {user && <li>
             <Link to={'/recipes'}><FontAwesomeIcon icon={faBook}/> Recipe Book</Link>
+          </li>}
+          {user && <li>
+            <Link to={'/dashboard'}><FontAwesomeIcon icon={faMagnifyingGlass}/> Search Recipes</Link>
           </li>}
           {user && <li>
             <Link to={'/add'}><FontAwesomeIcon icon={faPen}/> Add Recipes</Link>

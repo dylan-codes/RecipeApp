@@ -8,33 +8,22 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
   const [fetchController, setFetchController] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
 
-  const submitDropDownIngredient = (result) =>  {
-    console.log("Clicked List Element")
-    console.log(result)
-
-
+  const submitDropDownIngredient = (result) => {
     let ingredient = {
-      name:
-        result.charAt(0).toUpperCase() +
-        result.slice(1).toLowerCase(),
+      name: result.charAt(0).toUpperCase() + result.slice(1).toLowerCase(),
       amount: ingredientAmount,
     };
 
     addIngredient(ingredient);
 
-
-    console.log(ingredientList)
     setIngredientName("");
     setIngredientAmount("");
     setSearchResults([]);
   };
 
-  
-
   const submitIngredient = (event) => {
     event.preventDefault();
     if (searchResults.includes(ingredientName.toLowerCase())) {
-
       let ingredient = {
         name:
           ingredientName.charAt(0).toUpperCase() +
@@ -92,7 +81,6 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
           );
         })
         .catch((error) => {
-          /* console.log(error) */
         });
     } else {
       setSearchResults([]);

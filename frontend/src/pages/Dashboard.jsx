@@ -4,10 +4,10 @@ import RecipeCardContainer from "../components/RecipeCard/RecipeCardContainer";
 import AuthContext from "../context/auth-context";
 
 function Dashboard() {
-  const [searchData, setSearchData] = useState([]);
-  const AuthCtx = useContext(AuthContext)
+  const [searchData, setSearchData] = useState(null);
+  const AuthCtx = useContext(AuthContext);
 
-/*     useEffect(() => {
+  /*     useEffect(() => {
         const getRecipes = async () => {
         try {
             const response = await fetch("/api/recipes", {
@@ -36,17 +36,21 @@ function Dashboard() {
       <div className="container">
         <div className="form-content">
           <h3 className="form-header">Whatcha working with today?</h3>
-          <UserInputForm
-            onSubmit={onSubmit}
-          />
+          <p>Search for recipes you can make from your own recipe book</p>
+          <UserInputForm onSubmit={onSubmit} />
         </div>
       </div>
 
       <div className="searchContent">
-        <RecipeCardContainer
-          key={"RecipeContainer"}
-          searchResults={searchData}
-        />
+        {searchData && searchData.length === 0 && (
+          <h3 className="search-error">No recipes found.</h3>
+        )}
+        {searchData && (
+          <RecipeCardContainer
+            key={"RecipeContainer"}
+            searchResults={searchData}
+          />
+        )}
       </div>
     </>
   );

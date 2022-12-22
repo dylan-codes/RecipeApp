@@ -16,20 +16,16 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [fetchController, setFetchController] = useState({});
 
-  const submitDropDownIngredient = (result) =>  {
-    console.log("Clicked List Element")
-    console.log(result)
-
+  const submitDropDownIngredient = (result) => {
     setIngredientList([
       ...ingredientList,
       {
         id: Math.random(),
-        value: result
+        value: result,
       },
     ]);
     setUserInput("");
     setSearchResults([]);
-
   };
 
   const addIngredientHandler = (event) => {
@@ -41,7 +37,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
         ...ingredientList,
         {
           id: Math.random(),
-          value: userInput
+          value: userInput,
         },
       ]);
       setUserInput("");
