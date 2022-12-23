@@ -475,10 +475,19 @@ h3 {
   width: 150px;
 }
 
+.onboarding-error {
+  color: rgb(255, 61, 61);
+  font-size: small;
+}
+
 .success {
   color: rgb(21, 184, 21);
   position: absolute;
   left: -29px;
   right: 4px;
   width: 195px;
+}
+
+.space-above {
+  margin-top: 20px;
 }

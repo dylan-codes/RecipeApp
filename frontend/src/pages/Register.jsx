@@ -4,6 +4,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Card from "../components/UI/Card";
 import { useSignup } from "../hooks/use-signup";
 
+
 function Register() {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,67 +42,72 @@ function Register() {
 
   return (
     <>
-      <section className="heading">
-        <h1>
-          <FontAwesomeIcon icon={faUser} /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+      <div>
+        <Card class={"container"}>
+          <section className="heading">
+            <h1>
+              <FontAwesomeIcon icon={faUser} /> Register
+            </h1>
+            <p>Please create an account</p>
+          </section>
 
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={name}
-              placeholder="Enter your name"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="password"
-              name="password"
-              value={password}
-              placeholder="Enter your password"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="password2"
-              name="password2"
-              value={password2}
-              placeholder="Please confirm your password"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <button type="sumit" className="btn btn-block" disabled={isLoading}>
-              Submit
-            </button>
-            {error && <div>{error}</div>}
-          </div>
-        </form>
-      </section>
+          <section className="form">
+            <form onSubmit={onSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={name}
+                  placeholder="Enter your name"
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={email}
+                  placeholder="Enter your email"
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Enter your password"
+                  onChange={onChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="password2"
+                  name="password2"
+                  value={password2}
+                  placeholder="Please confirm your password"
+                  onChange={onChange}
+                />
+              </div>
+              <h6>(Password Criteria: length of 8 and at least ONE uppercase, lowercase, special and numerical character) </h6>
+              <div className="form-group space-above">
+                <button type="sumit" className="btn btn-block" disabled={isLoading}>
+                  Submit
+                </button>
+                {error && <div className="onboarding-error"> Please make sure your password matches and meets the criteria listed above </div>}
+              </div>
+            </form>
+          </section>
+        </Card>
+      </div>
     </>
   );
 }
