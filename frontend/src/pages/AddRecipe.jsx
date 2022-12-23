@@ -13,11 +13,12 @@ import hotdogImg from "../images/icons/SVG/hotdog.svg";
 import missingImg from "../images/icons/SVG/Missing.svg";
 import pizzaImg from "../images/icons/SVG/pizza.svg";
 import chickenImg from "../images/icons/SVG/chicken.svg";
+import TutorialCard from "../components/TutorialCard/TutorialCard";
 
 function AddRecipe() {
   const AuthCtx = useContext(AuthContext);
   const [inputInterface, setInputInterface] = useState("default");
-  const [title, setTitle] = useState("Title");
+  const [title, setTitle] = useState("Edit Title");
   const [ingredientList, setIngredientList] = useState([]);
   const [recipeSteps, setRecipeSteps] = useState([]);
   const [description, setDescription] = useState("");
@@ -126,7 +127,7 @@ function AddRecipe() {
         <h4 className="addrecipe-preview-header">Recipe Preview</h4>
         <Card key={"PreviewCard"}>
           <div className={classes["search_header"]}>
-            <h3 onClick={() => interfaceChangeHandler("title")}>{title}</h3>
+            <h3 onClick={() => interfaceChangeHandler("title")} className={`${inputInterface === "title" ? classes.selected : ''}`}>{title}</h3>
             <a className={classes["favorite_star"]}>
               <FontAwesomeIcon icon={faStar} key={"faStar"}/>
             </a>
@@ -135,14 +136,14 @@ function AddRecipe() {
             <div className={classes.column1}>
               <div className={classes.imageContent}>
                 <img
-                  className={classes.imageContent}
+                  className={`${classes.imageContent} ${inputInterface === "image" ? classes.selected : ''}`}
                   src={image}
                   alt={"Food"}
                   onClick={() => interfaceChangeHandler("image")}
                 ></img>
               </div>
               <div
-                className={classes.description}
+                className={`${classes.description} ${inputInterface === "description" ? classes.selected : ''}`}
                 onClick={() => interfaceChangeHandler("description")}
               >
                 <h4>Description:</h4>
@@ -156,11 +157,11 @@ function AddRecipe() {
                 onClick={() => interfaceChangeHandler("ingredients")}
               >
                 <h4>Ingredients:</h4>
-                <ol type="1" className={classes["ingredient_list"]}>
+                <ol type="1" className={`${classes["ingredient_list"]} ${inputInterface === "ingredients" ? classes.selected : ''}`}>
                   {ingredientList.map((ingredient) => {
                     return (
                       <li
-                        id={Math.random()}
+                        key={Math.random()}
                         onClick={(e) => handleIngredientClick(e)}
                       >
                         {ingredient.name + " (" + ingredient.amount + ")"}
@@ -170,15 +171,16 @@ function AddRecipe() {
                 </ol>
               </div>
               <div
-                className={classes.recipe}
+                className={classes["recipe_container"]}
                 onClick={() => interfaceChangeHandler("recipe")}
               >
                 <h4>Recipe:</h4>
-                <ol>
+                <ol className={`${classes["recipe_list"]} ${inputInterface === "recipe" ? classes.selected : ''}`}>
                   {recipeSteps.map((step) => {
                     return (
                       <li
-                        id={Math.random()}
+                        key={Math.random()}
+                        onClick={() => {console.log("Step Selected")}}
                       >
                         {step}
                       </li>
@@ -214,8 +216,24 @@ function AddRecipe() {
           removeIngredientHandler={removeIngredientHandler}
           recipeSteps={recipeSteps}
           addRecipeStepHandler={addRecipeStepHandler}
+          title={title}
+          description={description}
+          
         />
       </div>
+
+      {localStorage.getItem("siteTutorial") === "true" && (
+        <TutorialCard
+          title={"Bonjour!"}
+          subtitle={"Add Recipe Menu"}
+          description={
+            "Here you can enter and add recipes to your recipe book. To edit, click the card element you wish to change. Once added, these recipes can be searched for in the Search Dashboard and found in your Recipe Book."
+          }
+          subdescription={"Once you've added a recipe or two, let's check out your Recipe Book!"}
+          link={"/recipes"}
+          
+        />
+      )}
     </>
   );
 }

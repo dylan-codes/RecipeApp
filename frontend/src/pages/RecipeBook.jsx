@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import UserInputForm from "../components/UserInput/UserInputForm";
 import RecipeCardContainer from "../components/RecipeCard/RecipeCardContainer";
 import AuthContext from "../context/auth-context";
+import TutorialCard from "../components/TutorialCard/TutorialCard";
 
 function RecipeBook() {
   const [searchData, setSearchData] = useState([]);
@@ -10,6 +11,10 @@ function RecipeBook() {
   const email = JSON.parse(localStorage.getItem("user")).email;
   const token = JSON.parse(localStorage.getItem("user")).token;
   const userName = email.substring(0, email.lastIndexOf("@"));
+
+  if (localStorage.getItem("siteTutorial")){
+    localStorage.setItem("siteTutorial", "false")
+  }
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -38,7 +43,7 @@ function RecipeBook() {
       <div className="recipebook">
         <div className="recipebook-cover">
           <h1 className="recipebook-title">
-            {userName.toUpperCase()}'S SICK ASS RECIPE BOOK
+            {userName}'s Recipe Book
           </h1>
           <div className="recipebook-title-img" />
         </div>
@@ -63,6 +68,17 @@ function RecipeBook() {
         </div>
       </div>
       <div />
+      {localStorage.getItem("siteTutorial") && (
+        <TutorialCard
+          title={"Hola!"}
+          subtitle={"Recipe Book"}
+          description={
+            "Here you can view recipes you've collected over time. Ingredients from your Search Dashboard will show up as green in the recipes stored here. This is a good way to get an overview of what all you can possibly make."
+          }
+          subdescription={"Now that you've seen it all, let's go search for some recipes!"}
+          link={"/dashboard"}
+        />
+      )}
     </>
   );
 }

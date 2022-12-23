@@ -23,7 +23,7 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
 
   const submitIngredient = (event) => {
     event.preventDefault();
-    if (searchResults.includes(ingredientName.toLowerCase())) {
+    if (searchResults.includes(ingredientName.toLowerCase()) && ingredientAmount.trim().length > 0) {
       let ingredient = {
         name:
           ingredientName.charAt(0).toUpperCase() +

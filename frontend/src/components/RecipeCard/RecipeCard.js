@@ -70,7 +70,7 @@ const RecipeCard = ({ recipeTitle, ingredientList, recipeList, image, descriptio
               {ingredients}
             </ul>
           </div>
-          <div className={classes.recipe}>
+          <div className={classes["recipe_list"]}>
             <h4>Recipe:</h4>
             <ol>
               {recipe}

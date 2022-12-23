@@ -4,11 +4,11 @@ import IngredientInterface from "./IngredientInterface";
 import RecipeInterface from "./RecipeInterface";
 import TitleInterface from "./TitleInterface";
 
-const AddRecipeUI = ({ inputInterface, onImageChange, onTitleChange, onDescriptionChange, addIngredientHandler, removeIngredientHandler, recipeSteps, addRecipeStepHandler }) => {
+const AddRecipeUI = ({ inputInterface, onImageChange, onTitleChange, onDescriptionChange, addIngredientHandler, removeIngredientHandler, recipeSteps, addRecipeStepHandler, description }) => {
     const interfaceSwitch = () => {
         switch (inputInterface) {
             case 'description':
-                return <DescriptionInterface onDescriptionChange={onDescriptionChange}/>
+                return <DescriptionInterface onDescriptionChange={onDescriptionChange} description={description}/>
             case 'image':
                 return <ImageInterface onImageChange={onImageChange}/>
             case 'ingredients':

@@ -1,0 +1,39 @@
+.tutorialCard-container {
+    position: absolute;
+    left: 50px;
+    top: 120px;
+}
+
+.tutorialCard {
+    width: 400px;
+    min-height: 400px;
+    background-color: rgba(255, 230, 90, 0.808);
+}
+
+.descriptionBox {
+    background-color: white;
+    border-radius: 20px;
+    min-height: 250px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.subdescription {
+    margin-top: 10px;
+}
+
+.recipeInterface_addStep {
+    position: absolute;
+    right: 15px;
+    bottom: 35px;
+    background-color: rgb(255, 197, 90);
+    border: 2px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    border-radius: 50px;
+    padding: 4px;
+}
+
+.recipeInterface_addStep :hover{
+    cursor: pointer;
+}

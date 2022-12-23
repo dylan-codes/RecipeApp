@@ -37,6 +37,7 @@
 }
 
 .ingredient_list {
+  min-height: 170px;
   text-align: left;
   list-style: circle;
 }
@@ -48,11 +49,17 @@
 /*   background-color: bisque; */
 }
 
-.recipe {
+.recipe_container {
   text-align: left;
-/*   background-color: blanchedalmond; */
   width:  500px;
   min-height: 200px;
+/*   background-color: bisque; */
+}
+
+.recipe_list {
+  text-align: left;
+  min-height: 170px;
+  text-align: left;
 }
 
 .text_has {
@@ -63,3 +70,8 @@
   color: orange;
 }
 
+.selected {
+  border-color: yellowgreen;
+  border-style: dashed;
+  border-radius: 10px;
+}

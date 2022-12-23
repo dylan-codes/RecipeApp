@@ -26,6 +26,7 @@ export const useSignup = () => {
       const { email, token } = json;
       // Save user to local storage
       localStorage.setItem("user", JSON.stringify({ email, token }));
+      localStorage.setItem("siteTutorial", "true")
 
       // Update auth context
       AuthCtx.login({ email, token });
