@@ -15,6 +15,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
   );
   const [searchResults, setSearchResults] = useState([]);
   const [fetchController, setFetchController] = useState({});
+  const [error, setError] = useState(null);
 
   const submitDropDownIngredient = (result) => {
     setIngredientList([
@@ -26,11 +27,14 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
     ]);
     setUserInput("");
     setSearchResults([]);
+    setError(false);
   };
 
   const addIngredientHandler = (event) => {
     if (event) event.preventDefault();
+    console.log("Attempting to submit")
     if (searchResults.includes(userInput.toLowerCase())) {
+      
       inventoryCtx.addItem(userInput);
 
       setIngredientList([
@@ -42,7 +46,10 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
       ]);
       setUserInput("");
       setSearchResults([]);
+      setError(false);
     } else {
+      console.log(error)
+      setError(true)
     }
   };
 
@@ -162,6 +169,7 @@ const UserInputForm = ({ onSubmit, onAddIngredient }) => {
       <button className={classes.btn} onClick={submitIngredients}>
         Submit Order
       </button>
+      {error && <p className={classes['submit-error']}>Please make sure the ingredient entered is found in the dropdown list.</p>}
     </div>
   );
 };

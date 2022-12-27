@@ -6,11 +6,11 @@ import TutorialCard from "../components/TutorialCard/TutorialCard";
 
 function Dashboard() {
   const [searchData, setSearchData] = useState(null);
-  const [tutorialState, setTutorialState] = useState(null)
+  const [tutorialState, setTutorialState] = useState(null);
   const AuthCtx = useContext(AuthContext);
 
   useEffect(() => {
-    setTutorialState(localStorage.getItem("siteTutorial"))
+    setTutorialState(localStorage.getItem("siteTutorial"));
   }, []);
 
   /*     useEffect(() => {
@@ -38,9 +38,9 @@ function Dashboard() {
   };
 
   const closeTutorial = () => {
-    console.log("clicked")
-    setTutorialState(null)
-  }
+    console.log("clicked");
+    setTutorialState(null);
+  };
 
   return (
     <>
@@ -69,7 +69,7 @@ function Dashboard() {
           title={"Welcome!"}
           subtitle={"Search Dashboard"}
           description={
-            "Here, you can enter ingredients you have in the kitchen. Once your Recipe Book is filled, you can come to this page to search for both recipes you can make and those you are closest to being able to make!"
+            "Here, you can enter ingredients you have in the kitchen and search for recipes from your Recipe Book. Right now your Recipe Book is empty!"
           }
           subdescription={
             "Let's continue to the Add Recipes page and create our first recipe!"
@@ -82,7 +82,7 @@ function Dashboard() {
           title={"Sayōnara!"}
           subtitle={"Search Dashboard"}
           description={
-            "Now that we've created a recipe (or a few?) let's give the search a go. Search for the recipe(s) you have created. Note: you must search by the ingredients you used in them so remember them!"
+            "Now that we've created a recipe let's give the search a go. Search for the recipe(s) you have created. Note: you must search by the ingredients you used in them so remember them!"
           }
           subdescription={
             "You have reached the end of the tips. Welcome to the app, recipe sensei."

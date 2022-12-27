@@ -73,7 +73,7 @@ function RecipeBook() {
           title={"Hola!"}
           subtitle={"Recipe Book"}
           description={
-            "Here you can view recipes you've collected over time. Ingredients from your Search Dashboard will show up as green in the recipes stored here. This is a good way to get an overview of what all you can possibly make."
+            "Here you can view recipes you've collected over time. Ingredients in the Search Dashboard will show up here as green. This is a good way to get an overview of what all you can possibly make."
           }
           subdescription={"Now that you've seen it all, let's go search for some recipes!"}
           link={"/dashboard"}

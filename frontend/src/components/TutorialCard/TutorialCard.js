@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const TutorialCard = (props) => {
 
-  console.log(props.finale)
   const endTutorial = () => {
     localStorage.removeItem("siteTutorial")
     props.closeTutorial()

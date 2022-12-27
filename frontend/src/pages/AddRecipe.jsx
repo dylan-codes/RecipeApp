@@ -127,7 +127,7 @@ function AddRecipe() {
         <h4 className="addrecipe-preview-header">Recipe Preview</h4>
         <Card key={"PreviewCard"}>
           <div className={classes["search_header"]}>
-            <h3 onClick={() => interfaceChangeHandler("title")} className={`${inputInterface === "title" ? classes.selected : ''}`}>{title}</h3>
+            <h3 onClick={() => interfaceChangeHandler("title")} className={`addrecipe-title ${inputInterface === "title" ? classes.selected : ''}`}>{title}</h3>
             <a className={classes["favorite_star"]}>
               <FontAwesomeIcon icon={faStar} key={"faStar"}/>
             </a>
@@ -227,7 +227,7 @@ function AddRecipe() {
           title={"Bonjour!"}
           subtitle={"Add Recipe Menu"}
           description={
-            "Here you can enter and add recipes to your recipe book. To edit, click the card element you wish to change. Once added, these recipes can be searched for in the Search Dashboard and found in your Recipe Book."
+            "Here you can enter and add recipes to your recipe book. To edit, click the card element you wish to change. Once added, these recipes will appear in your Recipe Book."
           }
           subdescription={"Once you've added a recipe or two, let's check out your Recipe Book!"}
           link={"/recipes"}

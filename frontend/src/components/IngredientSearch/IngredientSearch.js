@@ -7,18 +7,24 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [fetchController, setFetchController] = useState({});
   const [ingredientList, setIngredientList] = useState([]);
+  const [error, setError] = useState(null);
 
   const submitDropDownIngredient = (result) => {
-    let ingredient = {
-      name: result.charAt(0).toUpperCase() + result.slice(1).toLowerCase(),
-      amount: ingredientAmount,
-    };
-
-    addIngredient(ingredient);
-
-    setIngredientName("");
-    setIngredientAmount("");
-    setSearchResults([]);
+    if (ingredientAmount.trim().length > 0) {
+      let ingredient = {
+        name: result.charAt(0).toUpperCase() + result.slice(1).toLowerCase(),
+        amount: ingredientAmount,
+      };
+  
+      addIngredient(ingredient);
+  
+      setIngredientName("");
+      setIngredientAmount("");
+      setSearchResults([]);
+      setError(false)
+    } else {
+      setError(true)
+    }
   };
 
   const submitIngredient = (event) => {
@@ -35,7 +41,9 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
       setIngredientName("");
       setIngredientAmount("");
       setSearchResults([]);
+      setError(false)
     } else {
+      setError(true)
     }
   };
 
@@ -131,7 +139,9 @@ const IngredientSearch = ({ addIngredient, removeIngredient }) => {
           Add Ingredient
         </button>
       </div>
+      {error && <p className={classes['submit-error']}>Please enter a valid ingredient (found in the dropdown) and an amount.</p>}
     </form>
+    
   );
 };
 
