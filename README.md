@@ -13,3 +13,8 @@ Users can Add recipes that they love, Search for recipes they're closest to bein
 # Where can I find the site? 
 
 https://dylans-recipe-app.onrender.com/
+
+
+## Tech Talk:
+
+Built using the MERN stack. Site utilizes: MongoDB for the Database, Express for server routing and react-router for front end routing, React for the UI, Node on the backend, and JSON Web Tokens for User Authentication.
